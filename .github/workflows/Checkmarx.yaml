@@ -33,7 +33,7 @@ jobs:
                     # Provide Checkmarx Client Secret
                     checkmarx_client_secret: 014DF517-39D1-4453-B7B3-9930C563627C 
                     # Select a Checkmarx Project
-                    project: DevOpsSpring
+                    project: DemoProject
                     # Vulnerability Scanners (sast, sca, cxgo)
                     scanners: sast
-                    params: --namespace=aviskalange --repo-name=AppSecToolsIntegration --branch=master --cx-flow.filterSeverity --cx-flow.filterCategory  --checkmarx.disable-clubbing=true
+                    #params: --namespace=aviskalange --repo-name=AppSecToolsIntegration --branch=master --cx-flow.filterSeverity --cx-flow.filterCategory  --checkmarx.disable-clubbing=true

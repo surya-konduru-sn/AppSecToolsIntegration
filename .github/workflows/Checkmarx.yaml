@@ -64,7 +64,7 @@ jobs:
                     # Provide Checkmarx URL
                     checkmarx_url: https://partners9x.checkmarx.net/
                     # Select a Checkmarx Team (optional)
-                    team: CxServer\servicenow
+                    team: /CxServer/servicenow
                     # Provide Checkmarx Username
                     checkmarx_username: servicenow
                     # Provide Checkmarx Password

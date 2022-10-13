@@ -15,7 +15,7 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v2
               with:
-                    repository: AppSecToolsIntegration
+                    repository: aviskalange/AppSecToolsIntegration
               
             - name: Checkmarx CxFlow Action
             # You may pin to the exact commit or the version.

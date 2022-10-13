@@ -35,4 +35,5 @@ jobs:
                     # Select a Checkmarx Project
                     project: DevOpsSpring
                     # Vulnerability Scanners (sast, sca, cxgo)
-                    scanners: sast 
+                    scanners: sast
+                    params: --namespace=aviskalange --repo-name=AppSecToolsIntegration --branch=master --cx-flow.filterSeverity --cx-flow.filterCategory  --checkmarx.disable-clubbing=true

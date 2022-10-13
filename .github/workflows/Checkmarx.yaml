@@ -12,8 +12,8 @@ jobs:
         name: Build
         runs-on: ubuntu-latest
         steps:
-            - name: Maven Build
-              run: mvn clean install -DskipTests=true
+           # - name: Maven Build
+            #  run: mvn clean install -DskipTests=true
         
 #       - name: Sonar Cloud Analysis
 #         if: success() # always() failure() success()

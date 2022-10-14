@@ -1,1 +1,36 @@
+name: Checkmarx
+    
+on:
+#push:
+#branches: ['master']
+#pull_request:
+#branches: ['master']
+  workflow_dispatch:
 
+jobs:
+    build:
+        name: Build
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+              with:
+                    repository: aviskalange/AppSecToolsIntegration
+                    
+            - name: Veracode Upload And Scan
+              # You may pin to the exact commit or the version.
+              # uses: veracode/veracode-uploadandscan-action@35794dab9fbcd28fac19e44963f80646b27f4a7f
+              uses: veracode/veracode-uploadandscan-action@0.2.4
+              with:
+                    # appname
+                    appname: AppSecToolsIntegration
+                    # createprofile
+                    createprofile: true
+                    # filepath
+                    filepath: ../../
+                    # version
+                    version: ${{ github.run_id }}-${{ github.run_number }}-${{ github.run_attempt }}
+                    # vid
+                    vid: 6d68d2392b8d5f4b4977f80165d493aa
+                    # vkey
+                    vkey: 41077ba6c04d977e5845bbd567046e8b1a1ecfd1b3f145c80801b305600d07163c2b8b4a57afecda970ab421c93abbf4aea6251844ec06772eb2de9fe54e650a

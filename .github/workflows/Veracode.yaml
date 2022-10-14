@@ -1,4 +1,4 @@
-name: Checkmarx
+name: Veracode
     
 on:
 #push:

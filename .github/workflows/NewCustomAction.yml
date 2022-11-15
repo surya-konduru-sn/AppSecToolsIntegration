@@ -8,7 +8,7 @@ jobs:
     steps:
       - name: Hello world action step
         id: hello
-        uses: aviskalange/CustomActionGET
+        uses: aviskalange/CustomActionGET@main
         with:
           who-to-greet: 'Avinash Kalange'
       # Use the output from the `hello` step

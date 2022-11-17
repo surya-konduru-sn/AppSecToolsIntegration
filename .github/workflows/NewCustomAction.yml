@@ -15,7 +15,7 @@ jobs:
         run : echo "The id is ${{ steps.hello.outputs.id }}"
       - name: Hello3.0
         id : hello3
-        run : echo "id=${{ steps.hello.outputs.id }}" >> $GITHUB_OUTPUT
+        run : echo "id=456" >> $GITHUB_OUTPUT
     outputs:
       id: ${{ steps.hello3.outputs.id }}
   second_job:

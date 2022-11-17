@@ -18,6 +18,7 @@ jobs:
         run : echo "id=456" >> $GITHUB_OUTPUT
     outputs:
       id: ${{ steps.hello3.outputs.id }}
+      id2: '999'
   second_job:
     # Use the output from the `hello` step
     runs-on: ubuntu-latest
@@ -25,4 +26,4 @@ jobs:
     steps:
       - name: Get the output time
         id: secondo
-        run: echo "The id is ${{ steps.hello.outputs.id }} and ${{ needs.hello_world_job.outputs.id}}"
+        run: echo "The id is ${{ needs.hello_world_job.outputs.id}} and ${{ needs.hello_world_job.outputs.id2}}"

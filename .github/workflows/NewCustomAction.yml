@@ -26,4 +26,4 @@ jobs:
     steps:
       - name: Get the output time
         id: secondo
-        run: echo "The id is ${{ needs.hello_world_job.outputs.output1}} and ${{ needs.hello_world_job.outputs.id2}}"
+        run: echo ${{ needs.hello_world_job.outputs.output1}}  ${{ needs.hello_world_job.outputs.id2}}

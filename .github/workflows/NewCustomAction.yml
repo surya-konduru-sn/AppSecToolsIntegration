@@ -6,14 +6,14 @@ jobs:
   hello_world_job:
     runs-on: ubuntu-latest
     name: A job to say hello
-    outputs:
-      id: ${{ steps.hello.outputs.id }}
     steps:
       - name: Hello world action step
         id: hello
         uses: aviskalange/CustomActionGET@main
       - name: Hello2.0
         run : echo "The id is ${{ steps.hello.outputs.id }}"
+    outputs:
+      id: ${{ steps.hello.outputs.id }}
   second_job:
     # Use the output from the `hello` step
     runs-on: ubuntu-latest

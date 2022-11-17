@@ -6,23 +6,10 @@ jobs:
   hello_world_job:
     runs-on: ubuntu-latest
     name: A job to say hello
-    outputs:
-      output1: ${{ steps.hello3.outputs.test }}
     steps:
-#       - name: Hello world action step
-#         id: hello
-#         uses: aviskalange/CustomActionGET@main
-#       - name: Hello2.0
-#         id : hello2
-#         run : echo "The id is ${{ steps.hello.outputs.id }}"
-      - name: Hello3.0
-        id : hello3
-        run : echo "test=456" >> $GITHUB_OUTPUT
-  second_job:
-    # Use the output from the `hello` step
-    runs-on: ubuntu-latest
-    name: Secondo
-    steps:
-      - name: Get the output time
-        id: secondo
-        run: echo ${{ needs.hello_world_job.outputs.output1}}
+      - name: Hello world action step
+        id: hello
+        uses: aviskalange/CustomActionGET@main
+      - name: Hello2.0
+        id : hello2
+        run : echo "The id is ${{ steps.hello.outputs.id }}"

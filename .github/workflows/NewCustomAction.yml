@@ -13,6 +13,8 @@ jobs:
   second_job:
     # Use the output from the `hello` step
     runs-on: ubuntu-latest
+    name: Secondo
     steps:
       - name: Get the output time
+        id: secondo
         run: echo "The time was ${{ steps.hello.outputs.id }}"

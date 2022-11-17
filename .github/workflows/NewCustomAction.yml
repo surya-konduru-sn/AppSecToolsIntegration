@@ -6,6 +6,9 @@ jobs:
   hello_world_job:
     runs-on: ubuntu-latest
     name: A job to say hello
+    outputs:
+      output1: ${{ steps.hello3.outputs.test }}
+      id2: '999'
     steps:
       - name: Hello world action step
         id: hello
@@ -15,10 +18,7 @@ jobs:
         run : echo "The id is ${{ steps.hello.outputs.id }}"
       - name: Hello3.0
         id : hello3
-        run : echo "id=456" >> $GITHUB_OUTPUT
-    outputs:
-      id: ${{ steps.hello3.outputs.id }}
-      id2: '999'
+        run : echo "test=456" >> $GITHUB_OUTPUT
   second_job:
     # Use the output from the `hello` step
     runs-on: ubuntu-latest
@@ -26,4 +26,4 @@ jobs:
     steps:
       - name: Get the output time
         id: secondo
-        run: echo "The id is ${{ needs.hello_world_job.outputs.id}} and ${{ needs.hello_world_job.outputs.id2}}"
+        run: echo "The id is ${{ needs.hello_world_job.outputs.output1}} and ${{ needs.hello_world_job.outputs.id2}}"

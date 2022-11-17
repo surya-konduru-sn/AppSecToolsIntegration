@@ -10,6 +10,9 @@ jobs:
       - name: Hello world action step
         id: hello
         uses: aviskalange/CustomActionGET@main
-      # Use the output from the `hello` step
-#       - name: Get the output time
-#         run: echo "The time was ${{ steps.hello.outputs.time }}"
+  second_job:
+    # Use the output from the `hello` step
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the output time
+        run: echo "The time was ${{ steps.hello.outputs.id }}"

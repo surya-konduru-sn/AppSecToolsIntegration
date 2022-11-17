@@ -15,6 +15,7 @@ jobs:
         run : echo "The id is ${{ steps.hello.outputs.id }}"
       - name: Custom Change
         uses: aviskalange/servicenow-devops-change@main
+        id : change
         with:
           devops-integration-user-name: ${{ secrets.SN_DEVOPS_USER }}
           devops-integration-user-password: ${{ secrets.SN_DEVOPS_PASSWORD }}
@@ -25,4 +26,6 @@ jobs:
           change-request: '{"setCloseCode":"true","attributes":{"short_description":"FIRST CR Automated Software Deployment","description":"Automated Software Deployment.","assignment_group":"a715cd759f2002002920bde8132e7018","implementation_plan":"Software update is tested and results can be found in Test Summaries Tab.","backout_plan":"When software fails in production, the previous software release will be re-deployed.","test_plan":"Testing if the software was successfully deployed"}}'
           interval: '100'
           timeout: '3600'
+      - name: Last step
+        run: echo "id is ${{ steps.change.outputs.id }}"
 

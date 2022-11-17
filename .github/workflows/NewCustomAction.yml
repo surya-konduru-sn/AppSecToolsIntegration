@@ -3,19 +3,13 @@ on:
  workflow_dispatch:
 
 jobs:
-  hello_world_job:
+  build:
+    name: Build
     runs-on: ubuntu-latest
-    name: A job to say hello
     steps:
-      - name: Hello world action step
-        id: hello
-        uses: aviskalange/CustomActionGET@main
-      - name: Hello2.0
-        id : hello2
-        run : echo "The id is ${{ steps.hello.outputs.id }}"
       - name: Custom Change
+        id: change
         uses: aviskalange/servicenow-devops-change@main
-        id : change
         with:
           devops-integration-user-name: ${{ secrets.SN_DEVOPS_USER }}
           devops-integration-user-password: ${{ secrets.SN_DEVOPS_PASSWORD }}

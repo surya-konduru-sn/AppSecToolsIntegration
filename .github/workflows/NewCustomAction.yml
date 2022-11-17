@@ -11,9 +11,13 @@ jobs:
         id: hello
         uses: aviskalange/CustomActionGET@main
       - name: Hello2.0
+        id : hello2
         run : echo "The id is ${{ steps.hello.outputs.id }}"
+      - name: Hello3.0
+        id : hello3
+        run : echo "id=${{ steps.hello.outputs.id }}" >> $GITHUB_OUTPUT
     outputs:
-      id: ${{ steps.hello.outputs.id }}
+      id: ${{ steps.hello3.outputs.id }}
   second_job:
     # Use the output from the `hello` step
     runs-on: ubuntu-latest

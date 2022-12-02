@@ -105,23 +105,51 @@ jobs:
           artifacts: ' [{"name": "com:autoclaim","version": "1.${{ github.run_number }}","semanticVersion": "1.${{ github.run_number }}.0","repositoryName": "${{ github.repository }}"}]'
           package-name: 'autoclaim.war'
       
-  deploy:
-    needs: integrationTest
-    name: Deploy
-    runs-on: ubuntu-latest
-    steps:     
-      - name: Custom Change
-        uses: ServiceNow/servicenow-devops-change@v1.34.2
-        with:
-          devops-integration-user-name: ${{ secrets.SN_DEVOPS_USER }}
-          devops-integration-user-password: ${{ secrets.SN_DEVOPS_PASSWORD }}
-          instance-url: ${{ secrets.SN_INSTANCE_URL }}
-          tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
-          context-github: ${{ toJSON(github) }}
-          job-name: 'Deploy'
-          change-request: '{"setCloseCode":"true","attributes":{"short_description":"Automated Software Deployment","description":"Automated Software Deployment.","assignment_group":"a715cd759f2002002920bde8132e7018"}}'
-          interval: '100'
-          timeout: '3600'
+#   deploy:
+#     needs: integrationTest
+#     name: Deploy
+#     runs-on: ubuntu-latest
+#     steps:     
+#       - name: Custom Change
+#         uses: ServiceNow/servicenow-devops-change@v1.34.2
+#         with:
+#           devops-integration-user-name: ${{ secrets.SN_DEVOPS_USER }}
+#           devops-integration-user-password: ${{ secrets.SN_DEVOPS_PASSWORD }}
+#           instance-url: ${{ secrets.SN_INSTANCE_URL }}
+#           tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
+#           context-github: ${{ toJSON(github) }}
+#           job-name: 'Deploy'
+#           change-request: '{"setCloseCode":"true","attributes":{"short_description":"Automated Software Deployment","description":"Automated Software Deployment.","assignment_group":"a715cd759f2002002920bde8132e7018"}}'
+#           interval: '100'
+#           timeout: '3600'
           
-      - name: Run deployment scripts
-        run: echo Completed Deployment.
+#       - name: Run deployment scripts
+#         run: echo Completed Deployment.
+  test:
+    needs: integrationTest
+    name: test
+    runs-on: ubuntu-latest
+    steps:
+        - name: ServiceNow DevOps Change Automation
+          # You may pin to the exact commit or the version.
+          # uses: ServiceNow/servicenow-devops-change@0f57435999463cc1dea44bde4f5eca9879474b85
+          uses: ServiceNow/servicenow-devops-change@v1.35.2
+          with:
+            # ServiceNow Instance URL
+            instance-url: ${{ secrets.SN_INSTANCE_URL }}
+            # Devops Integration User Name
+            devops-integration-user-name: ${{ secrets.SN_DEVOPS_USER }}
+            # Devops Integration User Password
+            devops-integration-user-password: ${{ secrets.SN_DEVOPS_PASSWORD }}
+            # Orchestration Tool Id
+            tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
+            # Display Name of the Job 
+            job-name: 'test-job'
+            # Github Context
+            context-github: ${{ toJSON(github) }}
+#             # The max. time in seconds to wait until the action should fail.
+#             timeout: 100 # optional, default is 3600
+#             # The time in seconds to wait between trying the API.
+#             interval: 100 # optional, default is 100
+#             # The customized inputs to create change with the requested details.
+#             change-request: 
